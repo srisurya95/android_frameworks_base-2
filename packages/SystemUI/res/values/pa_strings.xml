@@ -117,4 +117,10 @@
 
     <string name="quick_settings_alert_slider_detail_priority_events_title">Events</string>
     <string name="quick_settings_alert_slider_detail_priority_reminders_title">Reminders</string>
+
+    <!-- QUICK SETTINGS TILES -->
+    <string name="quick_settings_caffeine_label">Caffeine</string>
+    <string name="accessibility_quick_settings_caffeine_off">Caffeine off</string>
+    <string name="accessibility_quick_settings_caffeine_on">Caffeine on</string>
+
 </resources>
