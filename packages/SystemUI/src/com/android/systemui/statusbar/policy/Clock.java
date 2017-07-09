@@ -66,15 +66,6 @@ public class Clock extends TextView implements DemoMode {
     public static final int AM_PM_STYLE_SMALL   = 1;
     public static final int AM_PM_STYLE_NORMAL  = 2;
 
-<<<<<<< HEAD
-    private boolean mAttached;
-    private Calendar mCalendar;
-    private String mClockFormatString;
-    private SimpleDateFormat mClockFormat;
-    private SimpleDateFormat mContentDescriptionFormat;
-    private Locale mLocale;
-    private static int AM_PM_STYLE = AM_PM_STYLE_GONE;
-
     public static final int CLOCK_DATE_DISPLAY_GONE = 0;
     public static final int CLOCK_DATE_DISPLAY_SMALL = 1;
     public static final int CLOCK_DATE_DISPLAY_NORMAL = 2;
@@ -92,7 +83,7 @@ public class Clock extends TextView implements DemoMode {
 
     protected int mClockDateDisplay = CLOCK_DATE_DISPLAY_GONE;
     protected int mClockDateStyle = CLOCK_DATE_STYLE_REGULAR;
-    protected int mClockStyle = STYLE_CLOCK_RIGHT;
+    protected int mClockStyle = STYLE_CLOCK_CENTER;
     protected boolean mShowClock;
     private int mClockAndDateWidth;
     private int mAmPmStyle;
@@ -233,17 +224,6 @@ public class Clock extends TextView implements DemoMode {
         mCalendar.setTimeInMillis(System.currentTimeMillis());
         setText(getSmallTime());
         setContentDescription(mContentDescriptionFormat.format(mCalendar.getTime()));
-    }
-
-    @Override
-    public void onTuningChanged(String key, String newValue) {
-        if (CLOCK_SECONDS.equals(key)) {
-            mShowSeconds = newValue != null && Integer.parseInt(newValue) != 0;
-            updateShowSeconds();
-        } else if (StatusBarIconController.ICON_BLACKLIST.equals(key) && mCanBlacklistClock) {
-            ArraySet<String> list = StatusBarIconController.getIconBlacklist(newValue);
-            setVisibility(list.contains("clock") ? View.GONE : View.VISIBLE);
-        }
     }
 
     private void updateShowSeconds() {
@@ -406,7 +386,7 @@ public class Clock extends TextView implements DemoMode {
                 UserHandle.USER_CURRENT) == 1;
 
         mClockStyle = Settings.System.getIntForUser(resolver,
-                Settings.System.STATUSBAR_CLOCK_STYLE, STYLE_CLOCK_RIGHT,
+                Settings.System.STATUSBAR_CLOCK_STYLE, STYLE_CLOCK_CENTER,
                 UserHandle.USER_CURRENT);
 
         boolean is24hour = DateFormat.is24HourFormat(mContext);

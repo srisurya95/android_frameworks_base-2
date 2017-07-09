@@ -83,7 +83,6 @@ public class StatusBarIconController extends StatusBarIconList implements Tunabl
     //private BatteryMeterView mBatteryMeterViewKeyguard;
     //private BatteryMeterView mBatteryMeterView;
     private BatteryViewManager mBatteryViewManager;
-    private TextView mClock;
     private NetworkTraffic mNetworkTraffic;
     private View mOmniLogo;
     private boolean mShowLogo;
@@ -341,7 +340,7 @@ public class StatusBarIconController extends StatusBarIconList implements Tunabl
 
     public void hideSystemIconArea(boolean animate) {
         animateHide(mSystemIconArea, animate, true);
-        animateHide(mCenterClockLayout, animate);
+        animateHide(mCenterClockLayout, animate, true);
     }
 
     public void showSystemIconArea(boolean animate) {
@@ -351,10 +350,10 @@ public class StatusBarIconController extends StatusBarIconList implements Tunabl
 
     public void hideNotificationIconArea(boolean animate) {
         animateHide(mNotificationIconAreaInner, animate, true);
+	 animateHide(mCenterClockLayout, animate, true);
         if (mShowLogo) {
             animateHide(mOmniLogo, animate, true);
         }
-        animateHide(mCenterClockLayout, animate);
     }
 
     public void showNotificationIconArea(boolean animate) {
@@ -363,6 +362,7 @@ public class StatusBarIconController extends StatusBarIconList implements Tunabl
         if (mShowLogo) {
             animateShow(mOmniLogo, animate);
         }
+   }
 
     public void setClockVisibility(boolean visible) {
         ContentResolver resolver = mContext.getContentResolver();
@@ -370,7 +370,7 @@ public class StatusBarIconController extends StatusBarIconList implements Tunabl
                 resolver, Settings.System.STATUS_BAR_CLOCK, 1,
                 UserHandle.USER_CURRENT) == 1);
         int clockLocation = Settings.System.getIntForUser(
-                resolver, Settings.System.STATUSBAR_CLOCK_STYLE, 0,
+                resolver, Settings.System.STATUSBAR_CLOCK_STYLE, 1,
                 UserHandle.USER_CURRENT);
         if (clockLocation == 0 && mClock != null) {
             mClock.setVisibility(visible ? (showClock ? View.VISIBLE : View.GONE) : View.GONE);
