@@ -66,7 +66,6 @@ public class Clock extends TextView implements DemoMode {
     public static final int AM_PM_STYLE_SMALL   = 1;
     public static final int AM_PM_STYLE_NORMAL  = 2;
 
-<<<<<<< HEAD
     private boolean mAttached;
     private Calendar mCalendar;
     private String mClockFormatString;
@@ -92,7 +91,7 @@ public class Clock extends TextView implements DemoMode {
 
     protected int mClockDateDisplay = CLOCK_DATE_DISPLAY_GONE;
     protected int mClockDateStyle = CLOCK_DATE_STYLE_REGULAR;
-    protected int mClockStyle = STYLE_CLOCK_RIGHT;
+    protected int mClockStyle = STYLE_CLOCK_CENTER;
     protected boolean mShowClock;
     private int mClockAndDateWidth;
     private int mAmPmStyle;
@@ -406,7 +405,7 @@ public class Clock extends TextView implements DemoMode {
                 UserHandle.USER_CURRENT) == 1;
 
         mClockStyle = Settings.System.getIntForUser(resolver,
-                Settings.System.STATUSBAR_CLOCK_STYLE, STYLE_CLOCK_RIGHT,
+                Settings.System.STATUSBAR_CLOCK_STYLE, STYLE_CLOCK_CENTER,
                 UserHandle.USER_CURRENT);
 
         boolean is24hour = DateFormat.is24HourFormat(mContext);
